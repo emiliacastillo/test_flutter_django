@@ -1,0 +1,343 @@
+define(['dart_sdk', 'packages/http/http.dart', 'packages/http/src/browser_client.dart', 'packages/dio/src/multipart_file_stub.dart', 'packages/dio/src/form_data.dart', 'packages/dio/src/entry/dio_for_browser.dart', 'packages/dio/src/cancel_token.dart', 'packages/test_flutter_python/data/dao/dao.dart', 'packages/test_flutter_python/utils/logger.dart'], (function load__packages__test_flutter_python__data__api__network__network_handler_dart(dart_sdk, packages__http__http$46dart, packages__http__src__browser_client$46dart, packages__dio__src__multipart_file_stub$46dart, packages__dio__src__form_data$46dart, packages__dio__src__entry__dio_for_browser$46dart, packages__dio__src__cancel_token$46dart, packages__test_flutter_python__data__dao__dao$46dart, packages__test_flutter_python__utils__logger$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _js_helper = dart_sdk._js_helper;
+  const async = dart_sdk.async;
+  const _interceptors = dart_sdk._interceptors;
+  const io = dart_sdk.io;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const http = packages__http__http$46dart.http;
+  const response = packages__http__src__browser_client$46dart.src__response;
+  const multipart_file = packages__dio__src__multipart_file_stub$46dart.src__multipart_file;
+  const form_data = packages__dio__src__form_data$46dart.src__form_data;
+  const dio$ = packages__dio__src__entry__dio_for_browser$46dart.src__dio;
+  const options = packages__dio__src__cancel_token$46dart.src__options;
+  const response$ = packages__dio__src__cancel_token$46dart.src__response;
+  const dao = packages__test_flutter_python__data__dao__dao$46dart.data__dao__dao;
+  const logger = packages__test_flutter_python__utils__logger$46dart.utils__logger;
+  var network_handler = Object.create(dart.library);
+  var $isEmpty = dartx.isEmpty;
+  var $addAll = dartx.addAll;
+  var $length = dartx.length;
+  var $add = dartx.add;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    IdentityMapOfStringL$StringL: () => (T.IdentityMapOfStringL$StringL = dart.constFn(_js_helper.IdentityMap$(T.StringL(), T.StringL())))(),
+    MapOfStringL$StringL: () => (T.MapOfStringL$StringL = dart.constFn(core.Map$(T.StringL(), T.StringL())))(),
+    MapLOfStringL$StringL: () => (T.MapLOfStringL$StringL = dart.constFn(dart.legacy(T.MapOfStringL$StringL())))(),
+    ResponseL: () => (T.ResponseL = dart.constFn(dart.legacy(response.Response)))(),
+    MultipartFileL: () => (T.MultipartFileL = dart.constFn(dart.legacy(multipart_file.MultipartFile)))(),
+    JSArrayOfMultipartFileL: () => (T.JSArrayOfMultipartFileL = dart.constFn(_interceptors.JSArray$(T.MultipartFileL())))(),
+    ListOfMultipartFileL: () => (T.ListOfMultipartFileL = dart.constFn(core.List$(T.MultipartFileL())))(),
+    ListLOfMultipartFileL: () => (T.ListLOfMultipartFileL = dart.constFn(dart.legacy(T.ListOfMultipartFileL())))(),
+    IdentityMapOfStringL$ListLOfMultipartFileL: () => (T.IdentityMapOfStringL$ListLOfMultipartFileL = dart.constFn(_js_helper.IdentityMap$(T.StringL(), T.ListLOfMultipartFileL())))(),
+    ResponseL$1: () => (T.ResponseL$1 = dart.constFn(dart.legacy(response$.Response)))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.constMap(T.StringL(), T.StringL(), []);
+    },
+    get C1() {
+      return C[1] = dart.constMap(T.StringL(), dart.dynamic, []);
+    }
+  }, false);
+  var C = Array(2).fill(void 0);
+  var I = ["package:test_flutter_python/data/api/network/network_handler.dart"];
+  var tokenDao$ = dart.privateName(network_handler, "NetworkHandler.tokenDao");
+  var logger$ = dart.privateName(network_handler, "NetworkHandler.logger");
+  var refreshTokenURL = dart.privateName(network_handler, "NetworkHandler.refreshTokenURL");
+  var _baseUrl$ = dart.privateName(network_handler, "_baseUrl");
+  var _commonHeaders = dart.privateName(network_handler, "_commonHeaders");
+  network_handler.NetworkHandler = class NetworkHandler extends core.Object {
+    get tokenDao() {
+      return this[tokenDao$];
+    }
+    set tokenDao(value) {
+      super.tokenDao = value;
+    }
+    get logger() {
+      return this[logger$];
+    }
+    set logger(value) {
+      super.logger = value;
+    }
+    get refreshTokenURL() {
+      return this[refreshTokenURL];
+    }
+    set refreshTokenURL(value) {
+      super.refreshTokenURL = value;
+    }
+    [_commonHeaders](opts) {
+      let requireAuth = opts && 'requireAuth' in opts ? opts.requireAuth : true;
+      return async.async(T.MapLOfStringL$StringL(), (function* _commonHeaders() {
+        if (!dart.test(requireAuth)) return new (T.IdentityMapOfStringL$StringL()).new();
+        let token = (yield this.tokenDao.getSavedToken());
+        if (token == null || token[$isEmpty]) return new (T.IdentityMapOfStringL$StringL()).new();
+        return new (T.IdentityMapOfStringL$StringL()).from(["Authorization", "bearer " + dart.str(token)]);
+      }).bind(this));
+    }
+    get(opts) {
+      let path = opts && 'path' in opts ? opts.path : null;
+      let params = opts && 'params' in opts ? opts.params : "";
+      let baseUrl = opts && 'baseUrl' in opts ? opts.baseUrl : null;
+      let headers = opts && 'headers' in opts ? opts.headers : C[0] || CT.C0;
+      return async.async(T.ResponseL(), (function* get() {
+        let t0;
+        let url = dart.notNull((t0 = baseUrl, t0 == null ? this[_baseUrl$] : t0)) + dart.notNull(path) + dart.notNull(params);
+        let _headers = (yield this[_commonHeaders]());
+        _headers[$addAll](headers);
+        try {
+          this.logger.log("-> GET: " + url);
+          this.logger.log("-> HEADERS: " + dart.str(_headers));
+          let res = (yield http.get(url, {headers: _headers}));
+          this.logger.log("<- RESPONSE CODE: " + dart.str(res.statusCode));
+          this.logger.log("<- RESPONSE BODY: " + dart.str(res.body));
+          return res;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          this.logger.log("<- EXEPTION: " + dart.str(ex));
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    post(opts) {
+      let path = opts && 'path' in opts ? opts.path : null;
+      let baseUrl = opts && 'baseUrl' in opts ? opts.baseUrl : null;
+      let requireAuth = opts && 'requireAuth' in opts ? opts.requireAuth : true;
+      let body = opts && 'body' in opts ? opts.body : C[0] || CT.C0;
+      let headers = opts && 'headers' in opts ? opts.headers : C[0] || CT.C0;
+      return async.async(T.ResponseL(), (function* post() {
+        let t1;
+        let _url = dart.notNull((t1 = baseUrl, t1 == null ? this[_baseUrl$] : t1)) + dart.notNull(path);
+        let _headers = (yield this[_commonHeaders]({requireAuth: requireAuth}));
+        _headers[$addAll](headers);
+        try {
+          this.logger.log("-> POST: " + _url);
+          this.logger.log("-> HEADERS: " + dart.str(_headers));
+          this.logger.log("-> BODY: " + dart.str(body));
+          let res = (yield http.post(_url, {headers: _headers, body: body}));
+          this.logger.log("<- RESPONSE CODE: " + dart.str(res.statusCode));
+          this.logger.log("<- RESPONSE BODY: " + dart.str(res.body));
+          return res;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          this.logger.log("<- EXEPTION: " + dart.str(ex));
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    postWithEncode(opts) {
+      let path = opts && 'path' in opts ? opts.path : null;
+      let baseUrl = opts && 'baseUrl' in opts ? opts.baseUrl : null;
+      let requireAuth = opts && 'requireAuth' in opts ? opts.requireAuth : true;
+      let body = opts && 'body' in opts ? opts.body : "";
+      let headers = opts && 'headers' in opts ? opts.headers : C[0] || CT.C0;
+      return async.async(T.ResponseL(), (function* postWithEncode() {
+        let t2;
+        let _url = dart.notNull((t2 = baseUrl, t2 == null ? this[_baseUrl$] : t2)) + dart.notNull(path);
+        let _headers = (yield this[_commonHeaders]({requireAuth: requireAuth}));
+        _headers[$addAll](headers);
+        try {
+          this.logger.log("-> POST: " + _url);
+          this.logger.log("-> HEADERS: " + dart.str(_headers));
+          this.logger.log("-> BODY: " + dart.str(body));
+          let res = (yield http.post(_url, {headers: _headers, body: body}));
+          this.logger.log("<- RESPONSE CODE: " + dart.str(res.statusCode));
+          this.logger.log("<- RESPONSE BODY: " + dart.str(res.body));
+          return res;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          this.logger.log("<- EXEPTION: " + dart.str(ex));
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    put(opts) {
+      let path = opts && 'path' in opts ? opts.path : null;
+      let baseUrl = opts && 'baseUrl' in opts ? opts.baseUrl : null;
+      let body = opts && 'body' in opts ? opts.body : C[0] || CT.C0;
+      let headers = opts && 'headers' in opts ? opts.headers : C[0] || CT.C0;
+      return async.async(T.ResponseL(), (function* put() {
+        let t3;
+        let _url = dart.notNull((t3 = baseUrl, t3 == null ? this[_baseUrl$] : t3)) + dart.notNull(path);
+        let _headers = (yield this[_commonHeaders]());
+        _headers[$addAll](headers);
+        try {
+          this.logger.log("-> PUT: " + _url);
+          this.logger.log("-> HEADERS: " + dart.str(_headers));
+          this.logger.log("-> BODY: " + dart.str(body));
+          let res = (yield http.put(_url, {headers: _headers, body: body}));
+          this.logger.log("<- RESPONSE CODE: " + dart.str(res.statusCode));
+          this.logger.log("<- RESPONSE BODY: " + dart.str(res.body));
+          return res;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          this.logger.log("<- EXEPTION: " + dart.str(ex));
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    putWithEncode(opts) {
+      let path = opts && 'path' in opts ? opts.path : null;
+      let baseUrl = opts && 'baseUrl' in opts ? opts.baseUrl : null;
+      let body = opts && 'body' in opts ? opts.body : "";
+      let headers = opts && 'headers' in opts ? opts.headers : C[0] || CT.C0;
+      return async.async(T.ResponseL(), (function* putWithEncode() {
+        let t4;
+        let _url = dart.notNull((t4 = baseUrl, t4 == null ? this[_baseUrl$] : t4)) + dart.notNull(path);
+        let _headers = (yield this[_commonHeaders]());
+        _headers[$addAll](headers);
+        try {
+          this.logger.log("-> PUT: " + _url);
+          this.logger.log("-> HEADERS: " + dart.str(_headers));
+          this.logger.log("-> BODY: " + dart.str(body));
+          let res = (yield http.put(_url, {headers: _headers, body: body}));
+          this.logger.log("<- RESPONSE CODE: " + dart.str(res.statusCode));
+          this.logger.log("<- RESPONSE BODY: " + dart.str(res.body));
+          return res;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          this.logger.log("<- EXEPTION: " + dart.str(ex));
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    patch(opts) {
+      let path = opts && 'path' in opts ? opts.path : null;
+      let baseUrl = opts && 'baseUrl' in opts ? opts.baseUrl : null;
+      let body = opts && 'body' in opts ? opts.body : C[0] || CT.C0;
+      let headers = opts && 'headers' in opts ? opts.headers : C[0] || CT.C0;
+      return async.async(T.ResponseL(), (function* patch() {
+        let t5;
+        let _url = dart.notNull((t5 = baseUrl, t5 == null ? this[_baseUrl$] : t5)) + dart.notNull(path);
+        let _headers = (yield this[_commonHeaders]());
+        _headers[$addAll](headers);
+        try {
+          this.logger.log("-> PATCH: " + _url);
+          this.logger.log("-> HEADERS: " + dart.str(_headers));
+          this.logger.log("-> BODY: " + dart.str(body));
+          let res = (yield http.patch(_url, {headers: _headers, body: body}));
+          this.logger.log("<- RESPONSE CODE: " + dart.str(res.statusCode));
+          this.logger.log("<- RESPONSE BODY: " + dart.str(res.body));
+          return res;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          this.logger.log("<- EXEPTION: " + dart.str(ex));
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    delete(opts) {
+      let path = opts && 'path' in opts ? opts.path : null;
+      let baseUrl = opts && 'baseUrl' in opts ? opts.baseUrl : null;
+      let headers = opts && 'headers' in opts ? opts.headers : C[0] || CT.C0;
+      return async.async(T.ResponseL(), (function* $delete() {
+        let t6;
+        let url = dart.notNull((t6 = baseUrl, t6 == null ? this[_baseUrl$] : t6)) + dart.notNull(path);
+        let _headers = (yield this[_commonHeaders]());
+        _headers[$addAll](headers);
+        try {
+          this.logger.log("-> DELETE: " + url);
+          this.logger.log("-> HEADERS: " + dart.str(_headers));
+          let res = (yield http.delete(url, {headers: _headers}));
+          this.logger.log("<- RESPONSE CODE: " + dart.str(res.statusCode));
+          this.logger.log("<- RESPONSE BODY: " + dart.str(res.body));
+          return res;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          this.logger.log("<- EXEPTION: " + dart.str(ex));
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    postFile(opts) {
+      let path = opts && 'path' in opts ? opts.path : null;
+      let baseUrl = opts && 'baseUrl' in opts ? opts.baseUrl : null;
+      let body = opts && 'body' in opts ? opts.body : C[1] || CT.C1;
+      let headers = opts && 'headers' in opts ? opts.headers : C[0] || CT.C0;
+      let files = opts && 'files' in opts ? opts.files : null;
+      return async.async(T.ResponseL$1(), (function* postFile() {
+        let t7;
+        let _url = dart.notNull((t7 = baseUrl, t7 == null ? this[_baseUrl$] : t7)) + dart.notNull(path);
+        let _headers = (yield this[_commonHeaders]());
+        _headers[$addAll](headers);
+        try {
+          this.logger.log("-> POST: " + _url);
+          this.logger.log("-> HEADERS: " + dart.str(_headers));
+          this.logger.log("-> BODY: " + dart.str(body));
+          if (dart.notNull(files[$length]) > 0) {
+            let multipartFiles = T.JSArrayOfMultipartFileL().of([]);
+            for (let f of files) {
+              multipartFiles[$add](yield multipart_file.MultipartFile.fromFile(f.path, {filename: dart.str(f.path)}));
+            }
+            let filesMap = new (T.IdentityMapOfStringL$ListLOfMultipartFileL()).from(["files", multipartFiles]);
+            body[$addAll](filesMap);
+          }
+          let formData = new form_data.FormData.fromMap(body);
+          let dio = dio$.Dio.new();
+          let res = (yield dio.post(dart.dynamic, _url, {data: formData, options: new options.Options.new({method: "POST", responseType: options.ResponseType.json, headers: _headers})}));
+          this.logger.log("<- RESPONSE CODE: " + dart.str(res.statusCode));
+          this.logger.log("<- RESPONSE BODY: " + dart.str(dart.toString(res)));
+          return res;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          this.logger.log("<- EXEPTION: " + dart.str(ex));
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+  };
+  (network_handler.NetworkHandler.new = function(_baseUrl, tokenDao, logger) {
+    this[refreshTokenURL] = "refresh";
+    this[_baseUrl$] = _baseUrl;
+    this[tokenDao$] = tokenDao;
+    this[logger$] = logger;
+    ;
+  }).prototype = network_handler.NetworkHandler.prototype;
+  dart.addTypeTests(network_handler.NetworkHandler);
+  dart.addTypeCaches(network_handler.NetworkHandler);
+  dart.setMethodSignature(network_handler.NetworkHandler, () => ({
+    __proto__: dart.getMethods(network_handler.NetworkHandler.__proto__),
+    [_commonHeaders]: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.Map$(dart.legacy(core.String), dart.legacy(core.String))))), [], {requireAuth: dart.legacy(core.bool)}, {}),
+    get: dart.fnType(dart.legacy(async.Future$(dart.legacy(response.Response))), [], {baseUrl: dart.legacy(core.String), headers: dart.legacy(core.Map$(dart.legacy(core.String), dart.legacy(core.String))), params: dart.legacy(core.String), path: dart.legacy(core.String)}, {}),
+    post: dart.fnType(dart.legacy(async.Future$(dart.legacy(response.Response))), [], {baseUrl: dart.legacy(core.String), body: dart.legacy(core.Map$(dart.legacy(core.String), dart.legacy(core.String))), headers: dart.legacy(core.Map$(dart.legacy(core.String), dart.legacy(core.String))), path: dart.legacy(core.String), requireAuth: dart.legacy(core.bool)}, {}),
+    postWithEncode: dart.fnType(dart.legacy(async.Future$(dart.legacy(response.Response))), [], {baseUrl: dart.legacy(core.String), body: dart.legacy(core.String), headers: dart.legacy(core.Map$(dart.legacy(core.String), dart.legacy(core.String))), path: dart.legacy(core.String), requireAuth: dart.legacy(core.bool)}, {}),
+    put: dart.fnType(dart.legacy(async.Future$(dart.legacy(response.Response))), [], {baseUrl: dart.legacy(core.String), body: dart.legacy(core.Map$(dart.legacy(core.String), dart.legacy(core.String))), headers: dart.legacy(core.Map$(dart.legacy(core.String), dart.legacy(core.String))), path: dart.legacy(core.String)}, {}),
+    putWithEncode: dart.fnType(dart.legacy(async.Future$(dart.legacy(response.Response))), [], {baseUrl: dart.legacy(core.String), body: dart.legacy(core.String), headers: dart.legacy(core.Map$(dart.legacy(core.String), dart.legacy(core.String))), path: dart.legacy(core.String)}, {}),
+    patch: dart.fnType(dart.legacy(async.Future$(dart.legacy(response.Response))), [], {baseUrl: dart.legacy(core.String), body: dart.legacy(core.Map$(dart.legacy(core.String), dart.legacy(core.String))), headers: dart.legacy(core.Map$(dart.legacy(core.String), dart.legacy(core.String))), path: dart.legacy(core.String)}, {}),
+    delete: dart.fnType(dart.legacy(async.Future$(dart.legacy(response.Response))), [], {baseUrl: dart.legacy(core.String), headers: dart.legacy(core.Map$(dart.legacy(core.String), dart.legacy(core.String))), path: dart.legacy(core.String)}, {}),
+    postFile: dart.fnType(dart.legacy(async.Future$(dart.legacy(response$.Response))), [], {baseUrl: dart.legacy(core.String), body: dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)), files: dart.legacy(core.List$(dart.legacy(io.File))), headers: dart.legacy(core.Map$(dart.legacy(core.String), dart.legacy(core.String))), path: dart.legacy(core.String)}, {})
+  }));
+  dart.setLibraryUri(network_handler.NetworkHandler, I[0]);
+  dart.setFieldSignature(network_handler.NetworkHandler, () => ({
+    __proto__: dart.getFields(network_handler.NetworkHandler.__proto__),
+    [_baseUrl$]: dart.finalFieldType(dart.legacy(core.String)),
+    tokenDao: dart.finalFieldType(dart.legacy(dao.Dao)),
+    logger: dart.finalFieldType(dart.legacy(logger.Logger)),
+    refreshTokenURL: dart.finalFieldType(dart.legacy(core.String))
+  }));
+  dart.trackLibraries("packages/test_flutter_python/data/api/network/network_handler.dart", {
+    "package:test_flutter_python/data/api/network/network_handler.dart": network_handler
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["network_handler.dart"],"names":[],"mappings":"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","file":"../../../../../../../../packages/test_flutter_python/data/api/network/network_handler.dart.lib.js"}');
+  // Exports:
+  return {
+    data__api__network__network_handler: network_handler
+  };
+}));
+
+//# sourceMappingURL=network_handler.dart.lib.js.map

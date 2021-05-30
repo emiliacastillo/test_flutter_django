@@ -1,0 +1,978 @@
+define(['dart_sdk', 'packages/test_flutter_python/domain/health_area_model.dart', 'packages/test_flutter_python/domain/vaccine_site_model.dart', 'packages/sqflite/src/factory_impl.dart', 'packages/sqflite_common/src/open_options.dart', 'packages/shared_preferences/shared_preferences.dart', 'packages/test_flutter_python/domain/catchment_global_data.dart', 'packages/test_flutter_python/domain/vaccine_model.dart', 'packages/test_flutter_python/domain/vaccine_code_model.dart', 'packages/test_flutter_python/domain/person_model.dart', 'packages/test_flutter_python/domain/config_model.dart', 'packages/test_flutter_python/domain/user_model.dart', 'packages/test_flutter_python/domain/exceptions/exceptions.dart', 'packages/test_flutter_python/domain/tickets_client_model.dart', 'packages/test_flutter_python/domain/tickets_model.dart', 'packages/test_flutter_python/domain/client_model.dart', 'packages/test_flutter_python/domain/note_model.dart', 'packages/sqflite_common/src/sql_builder.dart', 'packages/test_flutter_python/data/dao/dao.dart'], (function load__packages__test_flutter_python__data__dao__dao_impl_dart(dart_sdk, packages__test_flutter_python__domain__health_area_model$46dart, packages__test_flutter_python__domain__vaccine_site_model$46dart, packages__sqflite__src__factory_impl$46dart, packages__sqflite_common__src__open_options$46dart, packages__shared_preferences__shared_preferences$46dart, packages__test_flutter_python__domain__catchment_global_data$46dart, packages__test_flutter_python__domain__vaccine_model$46dart, packages__test_flutter_python__domain__vaccine_code_model$46dart, packages__test_flutter_python__domain__person_model$46dart, packages__test_flutter_python__domain__config_model$46dart, packages__test_flutter_python__domain__user_model$46dart, packages__test_flutter_python__domain__exceptions__exceptions$46dart, packages__test_flutter_python__domain__tickets_client_model$46dart, packages__test_flutter_python__domain__tickets_model$46dart, packages__test_flutter_python__domain__client_model$46dart, packages__test_flutter_python__domain__note_model$46dart, packages__sqflite_common__src__sql_builder$46dart, packages__test_flutter_python__data__dao__dao$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _interceptors = dart_sdk._interceptors;
+  const async = dart_sdk.async;
+  const convert = dart_sdk.convert;
+  const _js_helper = dart_sdk._js_helper;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const health_area_model = packages__test_flutter_python__domain__health_area_model$46dart.domain__health_area_model;
+  const vaccine_site_model = packages__test_flutter_python__domain__vaccine_site_model$46dart.domain__vaccine_site_model;
+  const sqflite = packages__sqflite__src__factory_impl$46dart.sqflite;
+  const sqlite_api = packages__sqflite_common__src__open_options$46dart.sqlite_api;
+  const shared_preferences = packages__shared_preferences__shared_preferences$46dart.shared_preferences;
+  const catchment_global_data = packages__test_flutter_python__domain__catchment_global_data$46dart.domain__catchment_global_data;
+  const vaccine_model = packages__test_flutter_python__domain__vaccine_model$46dart.domain__vaccine_model;
+  const vaccine_code_model = packages__test_flutter_python__domain__vaccine_code_model$46dart.domain__vaccine_code_model;
+  const person_model = packages__test_flutter_python__domain__person_model$46dart.domain__person_model;
+  const config_model = packages__test_flutter_python__domain__config_model$46dart.domain__config_model;
+  const user_model = packages__test_flutter_python__domain__user_model$46dart.domain__user_model;
+  const exceptions = packages__test_flutter_python__domain__exceptions__exceptions$46dart.domain__exceptions__exceptions;
+  const tickets_client_model = packages__test_flutter_python__domain__tickets_client_model$46dart.domain__tickets_client_model;
+  const tickets_model = packages__test_flutter_python__domain__tickets_model$46dart.domain__tickets_model;
+  const client_model = packages__test_flutter_python__domain__client_model$46dart.domain__client_model;
+  const note_model = packages__test_flutter_python__domain__note_model$46dart.domain__note_model;
+  const sql_builder = packages__sqflite_common__src__sql_builder$46dart.src__sql_builder;
+  const dao = packages__test_flutter_python__data__dao__dao$46dart.data__dao__dao;
+  var dao_impl = Object.create(dart.library);
+  var $length = dartx.length;
+  var $isEmpty = dartx.isEmpty;
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $add = dartx.add;
+  var $forEach = dartx.forEach;
+  var $toString = dartx.toString;
+  var $_get = dartx._get;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    HealthAreaModelL: () => (T.HealthAreaModelL = dart.constFn(dart.legacy(health_area_model.HealthAreaModel)))(),
+    JSArrayOfHealthAreaModelL: () => (T.JSArrayOfHealthAreaModelL = dart.constFn(_interceptors.JSArray$(T.HealthAreaModelL())))(),
+    VaccineSiteModelL: () => (T.VaccineSiteModelL = dart.constFn(dart.legacy(vaccine_site_model.VaccineSiteModel)))(),
+    JSArrayOfVaccineSiteModelL: () => (T.JSArrayOfVaccineSiteModelL = dart.constFn(_interceptors.JSArray$(T.VaccineSiteModelL())))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    FutureOfNull: () => (T.FutureOfNull = dart.constFn(async.Future$(core.Null)))(),
+    FutureLOfNull: () => (T.FutureLOfNull = dart.constFn(dart.legacy(T.FutureOfNull())))(),
+    DatabaseL: () => (T.DatabaseL = dart.constFn(dart.legacy(sqlite_api.Database)))(),
+    intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))(),
+    DatabaseLAndintLToFutureLOfNull: () => (T.DatabaseLAndintLToFutureLOfNull = dart.constFn(dart.fnType(T.FutureLOfNull(), [T.DatabaseL(), T.intL()])))(),
+    JSArrayOfStringL: () => (T.JSArrayOfStringL = dart.constFn(_interceptors.JSArray$(T.StringL())))(),
+    ObjectL: () => (T.ObjectL = dart.constFn(dart.legacy(core.Object)))(),
+    JSArrayOfObjectL: () => (T.JSArrayOfObjectL = dart.constFn(_interceptors.JSArray$(T.ObjectL())))(),
+    boolL: () => (T.boolL = dart.constFn(dart.legacy(core.bool)))(),
+    CatchmentGlobalDataL: () => (T.CatchmentGlobalDataL = dart.constFn(dart.legacy(catchment_global_data.CatchmentGlobalData)))(),
+    StringLToNull: () => (T.StringLToNull = dart.constFn(dart.fnType(core.Null, [T.StringL()])))(),
+    ListOfHealthAreaModelL: () => (T.ListOfHealthAreaModelL = dart.constFn(core.List$(T.HealthAreaModelL())))(),
+    ListLOfHealthAreaModelL: () => (T.ListLOfHealthAreaModelL = dart.constFn(dart.legacy(T.ListOfHealthAreaModelL())))(),
+    VaccineModelL: () => (T.VaccineModelL = dart.constFn(dart.legacy(vaccine_model.VaccineModel)))(),
+    JSArrayOfVaccineModelL: () => (T.JSArrayOfVaccineModelL = dart.constFn(_interceptors.JSArray$(T.VaccineModelL())))(),
+    MapOfStringL$dynamic: () => (T.MapOfStringL$dynamic = dart.constFn(core.Map$(T.StringL(), dart.dynamic)))(),
+    MapLOfStringL$dynamic: () => (T.MapLOfStringL$dynamic = dart.constFn(dart.legacy(T.MapOfStringL$dynamic())))(),
+    MapL: () => (T.MapL = dart.constFn(dart.legacy(core.Map)))(),
+    MapLToNull: () => (T.MapLToNull = dart.constFn(dart.fnType(core.Null, [T.MapL()])))(),
+    ListOfVaccineModelL: () => (T.ListOfVaccineModelL = dart.constFn(core.List$(T.VaccineModelL())))(),
+    ListLOfVaccineModelL: () => (T.ListLOfVaccineModelL = dart.constFn(dart.legacy(T.ListOfVaccineModelL())))(),
+    ListOfVaccineSiteModelL: () => (T.ListOfVaccineSiteModelL = dart.constFn(core.List$(T.VaccineSiteModelL())))(),
+    ListLOfVaccineSiteModelL: () => (T.ListLOfVaccineSiteModelL = dart.constFn(dart.legacy(T.ListOfVaccineSiteModelL())))(),
+    IdentityMapOfStringL$StringL: () => (T.IdentityMapOfStringL$StringL = dart.constFn(_js_helper.IdentityMap$(T.StringL(), T.StringL())))(),
+    HealthAreaModelLToNull: () => (T.HealthAreaModelLToNull = dart.constFn(dart.fnType(core.Null, [T.HealthAreaModelL()])))(),
+    VaccineSiteModelLToNull: () => (T.VaccineSiteModelLToNull = dart.constFn(dart.fnType(core.Null, [T.VaccineSiteModelL()])))(),
+    VaccineCodeModelL: () => (T.VaccineCodeModelL = dart.constFn(dart.legacy(vaccine_code_model.VaccineCodeModel)))(),
+    JSArrayOfVaccineCodeModelL: () => (T.JSArrayOfVaccineCodeModelL = dart.constFn(_interceptors.JSArray$(T.VaccineCodeModelL())))(),
+    ListOfVaccineCodeModelL: () => (T.ListOfVaccineCodeModelL = dart.constFn(core.List$(T.VaccineCodeModelL())))(),
+    ListLOfVaccineCodeModelL: () => (T.ListLOfVaccineCodeModelL = dart.constFn(dart.legacy(T.ListOfVaccineCodeModelL())))(),
+    IdentityMapOfStringL$ObjectL: () => (T.IdentityMapOfStringL$ObjectL = dart.constFn(_js_helper.IdentityMap$(T.StringL(), T.ObjectL())))(),
+    VaccineCodeModelLToNull: () => (T.VaccineCodeModelLToNull = dart.constFn(dart.fnType(core.Null, [T.VaccineCodeModelL()])))(),
+    IdentityMapOfStringL$dynamic: () => (T.IdentityMapOfStringL$dynamic = dart.constFn(_js_helper.IdentityMap$(T.StringL(), dart.dynamic)))(),
+    GenderL: () => (T.GenderL = dart.constFn(dart.legacy(person_model.Gender)))(),
+    ConfigModelL: () => (T.ConfigModelL = dart.constFn(dart.legacy(config_model.ConfigModel)))(),
+    dynamicToFutureLOfNull: () => (T.dynamicToFutureLOfNull = dart.constFn(dart.fnType(T.FutureLOfNull(), [dart.dynamic])))(),
+    VaccineModelLToFutureLOfNull: () => (T.VaccineModelLToFutureLOfNull = dart.constFn(dart.fnType(T.FutureLOfNull(), [T.VaccineModelL()])))(),
+    UserModelL: () => (T.UserModelL = dart.constFn(dart.legacy(user_model.UserModel)))(),
+    JSArrayOfUserModelL: () => (T.JSArrayOfUserModelL = dart.constFn(_interceptors.JSArray$(T.UserModelL())))(),
+    ListOfUserModelL: () => (T.ListOfUserModelL = dart.constFn(core.List$(T.UserModelL())))(),
+    ListLOfUserModelL: () => (T.ListLOfUserModelL = dart.constFn(dart.legacy(T.ListOfUserModelL())))(),
+    TicketsClientModelL: () => (T.TicketsClientModelL = dart.constFn(dart.legacy(tickets_client_model.TicketsClientModel)))(),
+    JSArrayOfTicketsClientModelL: () => (T.JSArrayOfTicketsClientModelL = dart.constFn(_interceptors.JSArray$(T.TicketsClientModelL())))(),
+    ListOfTicketsClientModelL: () => (T.ListOfTicketsClientModelL = dart.constFn(core.List$(T.TicketsClientModelL())))(),
+    ListLOfTicketsClientModelL: () => (T.ListLOfTicketsClientModelL = dart.constFn(dart.legacy(T.ListOfTicketsClientModelL())))(),
+    TicketsModelL: () => (T.TicketsModelL = dart.constFn(dart.legacy(tickets_model.TicketsModel)))(),
+    JSArrayOfTicketsModelL: () => (T.JSArrayOfTicketsModelL = dart.constFn(_interceptors.JSArray$(T.TicketsModelL())))(),
+    DateTimeL: () => (T.DateTimeL = dart.constFn(dart.legacy(core.DateTime)))(),
+    ClientModelL: () => (T.ClientModelL = dart.constFn(dart.legacy(client_model.ClientModel)))(),
+    JSArrayOfClientModelL: () => (T.JSArrayOfClientModelL = dart.constFn(_interceptors.JSArray$(T.ClientModelL())))(),
+    ListOfClientModelL: () => (T.ListOfClientModelL = dart.constFn(core.List$(T.ClientModelL())))(),
+    ListLOfClientModelL: () => (T.ListLOfClientModelL = dart.constFn(dart.legacy(T.ListOfClientModelL())))(),
+    NoteModelL: () => (T.NoteModelL = dart.constFn(dart.legacy(note_model.NoteModel)))(),
+    JSArrayOfNoteModelL: () => (T.JSArrayOfNoteModelL = dart.constFn(_interceptors.JSArray$(T.NoteModelL())))(),
+    ListOfNoteModelL: () => (T.ListOfNoteModelL = dart.constFn(core.List$(T.NoteModelL())))(),
+    ListLOfNoteModelL: () => (T.ListLOfNoteModelL = dart.constFn(dart.legacy(T.ListOfNoteModelL())))()
+  };
+  var T$Eval = Object.assign({
+    _: () => T$Eval
+  }, T);
+  var S = {
+    _: () => S
+  };
+  var S$Eval = Object.assign({
+    _: () => S$Eval
+  }, S);
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  var C = [];
+  var I = ["package:test_flutter_python/data/dao/dao_impl.dart"];
+  var database = dart.privateName(dao_impl, "DaoImpl.database");
+  var healthAreas = dart.privateName(dao_impl, "DaoImpl.healthAreas");
+  var sites = dart.privateName(dao_impl, "DaoImpl.sites");
+  var tickets = dart.privateName(dao_impl, "DaoImpl.tickets");
+  var _openDatabase = dart.privateName(dao_impl, "_openDatabase");
+  var _vaccineModelToStorageJson = dart.privateName(dao_impl, "_vaccineModelToStorageJson");
+  var _mapSQLiteResultToVaccineModel = dart.privateName(dao_impl, "_mapSQLiteResultToVaccineModel");
+  var _dateFromString = dart.privateName(dao_impl, "_dateFromString");
+  var _mapSQLiteResultToPersonModel = dart.privateName(dao_impl, "_mapSQLiteResultToPersonModel");
+  var _vaccineModelToStorageJsonFromServer = dart.privateName(dao_impl, "_vaccineModelToStorageJsonFromServer");
+  var _mapSQLiteResultToUserModel = dart.privateName(dao_impl, "_mapSQLiteResultToUserModel");
+  var _mapSQLiteResultToTicketsClientModel = dart.privateName(dao_impl, "_mapSQLiteResultToTicketsClientModel");
+  var _mapSQLiteResultToTicketsModel = dart.privateName(dao_impl, "_mapSQLiteResultToTicketsModel");
+  var _mapSQLiteResultToTicketClientModel = dart.privateName(dao_impl, "_mapSQLiteResultToTicketClientModel");
+  var _mapSQLiteResultToClientModel = dart.privateName(dao_impl, "_mapSQLiteResultToClientModel");
+  var _mapSQLiteResultToNoteModel = dart.privateName(dao_impl, "_mapSQLiteResultToNoteModel");
+  dao_impl.DaoImpl = class DaoImpl extends core.Object {
+    get database() {
+      return this[database];
+    }
+    set database(value) {
+      this[database] = value;
+    }
+    get healthAreas() {
+      return this[healthAreas];
+    }
+    set healthAreas(value) {
+      this[healthAreas] = value;
+    }
+    get sites() {
+      return this[sites];
+    }
+    set sites(value) {
+      this[sites] = value;
+    }
+    get tickets() {
+      return this[tickets];
+    }
+    set tickets(value) {
+      this[tickets] = value;
+    }
+    [_openDatabase]() {
+      return async.async(dart.dynamic, (function* _openDatabase() {
+        try {
+          if (this.database == null) {
+            let databasesPath = (yield sqflite.getDatabasesPath());
+            let path = dart.str(databasesPath) + "/" + "abdaladb";
+            let queries = ["CREATE TABLE " + "vaccineTable" + " (id INTEGER PRIMARY KEY , " + "personId" + " TEXT, " + "personDocument" + " TEXT, " + "civil" + " INTEGER , " + "personName" + " TEXT, " + "personLastName" + " TEXT, " + "personAge" + " INTEGER, " + "personGender" + " TEXT, " + "vaccineId" + " TEXT, " + "healthArea" + " TEXT, " + "vaccineSite" + " TEXT, " + "inclusionNumber" + " TEXT, " + "oneVaccineAdministrationDate" + " TEXT, " + "twoVaccineAdministrationDate" + " TEXT, " + "threeVaccineAdministrationDate" + " TEXT, " + "mDate" + " TEXT, " + "modified" + " INTEGER, " + "errors" + " TEXT, " + "verify" + " INTEGER, " + "editable" + " INTEGER)", "CREATE TABLE " + "user_table" + " ( " + "token" + " TEXT PRIMARY KEY, " + "user" + " TEXT, " + "password" + " TEXT)", "CREATE TABLE " + "tickets_table" + " (id INTEGER PRIMARY KEY, " + "dateschedule" + " TEXT,  " + "idclient" + " INTEGER, " + "note" + " TEXT)", "CREATE TABLE " + "client_table" + " (id INTEGER PRIMARY KEY, " + "nameclient" + " TEXT, " + "addressclient" + " TEXT, " + "phone" + " INTEGER, " + "token" + " TEXT)", "CREATE TABLE " + "notes_table" + " (id INTEGER PRIMARY KEY, " + "note" + " TEXT, " + "idticket" + " INTEGER)", "INSERT INTO " + "tickets_table" + "( id, dateschedule, idclient,note) VALUES( 1,\"2021-05-20 08:41:08.191375\",11,\"emilianota1\")", "INSERT INTO " + "tickets_table" + "( id, dateschedule, idclient,note) VALUES( 2,\"2021-05-20 08:41:08.191375\",11,\"emilianota2\")", "INSERT INTO " + "user_table" + "( user,  password, token) VALUES(\"emilia\",\"emilia\",\"1-emilia-emilia\")", "INSERT INTO " + "client_table" + "( id,  nameclient, addressclient,  phone,token) VALUES(11, \"emilia\",\"emilia\",6,\"1-emilia-emilia\")", "INSERT INTO " + "notes_table" + "( id, note,idticket) VALUES(1, \"nota1\",1)", "INSERT INTO " + "notes_table" + "( id, note,idticket) VALUES(2, \"nota2\",1)", "INSERT INTO " + "notes_table" + "( id, note,idticket) VALUES(3, \"nota3\",2)"];
+            this.database = (yield sqflite.openDatabase(path, {version: 1, onCreate: dart.fn((db, version) => async.async(core.Null, function*() {
+                for (let t0 of queries) {
+                  let query = T.StringL().as(t0);
+                  yield db.execute(query);
+                }
+              }), T.DatabaseLAndintLToFutureLOfNull())}));
+          }
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    getSavedToken() {
+      return async.async(T.StringL(), function* getSavedToken() {
+        return (yield shared_preferences.SharedPreferences.getInstance()).getString("token");
+      });
+    }
+    createVaccineRecord(model) {
+      return async.async(T.boolL(), (function* createVaccineRecord() {
+        try {
+          yield this[_openDatabase]();
+          let result = (yield this.database.query("vaccineTable", {columns: T.JSArrayOfStringL().of(["inclusionNumber"]), where: "inclusionNumber" + " = ?", whereArgs: T.JSArrayOfObjectL().of([model.inclusionNumber])}));
+          if (result[$length] === 0) {
+            yield this.database.insert("vaccineTable", this[_vaccineModelToStorageJson](model));
+            return true;
+          } else {
+            yield this.database.update("vaccineTable", this[_vaccineModelToStorageJson](model), {where: "inclusionNumber" + " = ?", whereArgs: T.JSArrayOfObjectL().of([model.inclusionNumber])});
+            return true;
+          }
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          core.print(ex);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    getCatchmentGlobalData() {
+      return async.async(T.CatchmentGlobalDataL(), function* getCatchmentGlobalData() {
+        let globalData = new catchment_global_data.CatchmentGlobalData.new({oneDoseNumber: 0, recordsWithErrors: 0, threeDoseNumber: 0, twoDoseNumber: 0});
+        let result = (yield shared_preferences.SharedPreferences.getInstance()).getString("globalData");
+        if (result != null) {
+          let js = convert.json.decode(result);
+          globalData.recordsWithErrors = core.int.tryParse(core.String.as(dart.dsend(js, '_get', ["globalDataErrors"])));
+          globalData.twoDoseNumber = core.int.tryParse(core.String.as(dart.dsend(js, '_get', ["globalDataTwoAdministration"])));
+          globalData.threeDoseNumber = core.int.tryParse(core.String.as(dart.dsend(js, '_get', ["globalDataThreeAdministration"])));
+          globalData.oneDoseNumber = core.int.tryParse(core.String.as(dart.dsend(js, '_get', ["globalDataOneAdministration"])));
+        }
+        return globalData;
+      });
+    }
+    getCurrentUserLogged() {
+      return async.async(T.StringL(), function* getCurrentUserLogged() {
+        return (yield shared_preferences.SharedPreferences.getInstance()).getString("user");
+      });
+    }
+    getCurrenttokenLogged() {
+      return async.async(T.StringL(), function* getCurrenttokenLogged() {
+        return (yield shared_preferences.SharedPreferences.getInstance()).getString("token");
+      });
+    }
+    getHealthAreaModels() {
+      return async.async(T.ListLOfHealthAreaModelL(), (function* getHealthAreaModels() {
+        let t3;
+        if (dart.test(this.healthAreas[$isEmpty])) {
+          let result = (yield shared_preferences.SharedPreferences.getInstance()).getStringList("healthArea");
+          if ((t3 = result, t3 == null ? null : t3[$isNotEmpty]) === true) {
+            result[$forEach](dart.fn(element => {
+              let js = convert.json.decode(element);
+              this.healthAreas[$add](new health_area_model.HealthAreaModel.new({id: T.StringL().as(dart.dsend(js, '_get', ["id"])), value: T.StringL().as(dart.dsend(js, '_get', ["value"]))}));
+            }, T.StringLToNull()));
+          }
+        }
+        return this.healthAreas;
+      }).bind(this));
+    }
+    getVaccineRecords() {
+      return async.async(T.ListLOfVaccineModelL(), (function* getVaccineRecords() {
+        try {
+          yield this[_openDatabase]();
+          let vaccineModelResult = T.JSArrayOfVaccineModelL().of([]);
+          let result = (yield this.database.query("vaccineTable", {columns: T.JSArrayOfStringL().of(["personId", "personDocument", "civil", "personName", "personLastName", "personAge", "personGender", "vaccineId", "healthArea", "vaccineSite", "inclusionNumber", "oneVaccineAdministrationDate", "twoVaccineAdministrationDate", "threeVaccineAdministrationDate", "mDate", "modified", "errors", "verify", "id"])}));
+          if (dart.notNull(result[$length]) > 0) {
+            result[$forEach](dart.fn(element => {
+              vaccineModelResult[$add](this[_mapSQLiteResultToVaccineModel](T.MapLOfStringL$dynamic().as(element)));
+            }, T.MapLToNull()));
+          }
+          return vaccineModelResult;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    getVaccineSites() {
+      return async.async(T.ListLOfVaccineSiteModelL(), (function* getVaccineSites() {
+        let t4;
+        if (dart.test(this.sites[$isEmpty])) {
+          let result = (yield shared_preferences.SharedPreferences.getInstance()).getStringList("vaccineSite");
+          if ((t4 = result, t4 == null ? null : t4[$isNotEmpty]) === true) {
+            result[$forEach](dart.fn(element => {
+              let js = convert.json.decode(element);
+              this.sites[$add](new vaccine_site_model.VaccineSiteModel.new({id: T.StringL().as(dart.dsend(js, '_get', ["id"])), value: T.StringL().as(dart.dsend(js, '_get', ["value"])), description: T.StringL().as(dart.dsend(js, '_get', ["description"]))}));
+            }, T.StringLToNull()));
+          }
+        }
+        return this.sites;
+      }).bind(this));
+    }
+    saveLogin(userName, token) {
+      return async.async(T.boolL(), function* saveLogin() {
+        try {
+          let preferences = (yield shared_preferences.SharedPreferences.getInstance());
+          yield preferences.setString("token", token);
+          yield preferences.setString("user", userName);
+          return true;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          core.print(ex);
+          return false;
+        }
+      });
+    }
+    setCatchmentGlobalData(model) {
+      return async.async(T.boolL(), function* setCatchmentGlobalData() {
+        let js = null;
+        if (model != null) js = convert.json.encode(new (T.IdentityMapOfStringL$StringL()).from(["globalDataOneAdministration", dart.toString(model.oneDoseNumber), "globalDataTwoAdministration", dart.toString(model.twoDoseNumber), "globalDataThreeAdministration", dart.toString(model.threeDoseNumber), "globalDataErrors", dart.toString(model.recordsWithErrors)]));
+        return (yield shared_preferences.SharedPreferences.getInstance()).setString("globalData", js);
+      });
+    }
+    setHealthAreas(models) {
+      return async.async(T.boolL(), (function* setHealthAreas() {
+        this.healthAreas = models;
+        let modelsToStorage = T.JSArrayOfStringL().of([]);
+        models[$forEach](dart.fn(element => {
+          modelsToStorage[$add](convert.json.encode(new (T.IdentityMapOfStringL$StringL()).from(["id", element.id, "value", element.value])));
+        }, T.HealthAreaModelLToNull()));
+        return (yield shared_preferences.SharedPreferences.getInstance()).setStringList("healthArea", modelsToStorage);
+      }).bind(this));
+    }
+    setVaccineSites(models) {
+      return async.async(T.boolL(), (function* setVaccineSites() {
+        this.sites = models;
+        let modelsToStorage = T.JSArrayOfStringL().of([]);
+        models[$forEach](dart.fn(element => {
+          modelsToStorage[$add](convert.json.encode(new (T.IdentityMapOfStringL$StringL()).from(["id", element.id, "value", element.value, "description", element.description])));
+        }, T.VaccineSiteModelLToNull()));
+        return (yield shared_preferences.SharedPreferences.getInstance()).setStringList("vaccineSite", modelsToStorage);
+      }).bind(this));
+    }
+    disableVaccineCode(code) {
+      return async.async(T.boolL(), (function* disableVaccineCode() {
+        let vaccineCodes = (yield this.getVaccineCodes());
+        for (let i = 0; i < dart.notNull(vaccineCodes[$length]); i = i + 1) {
+          if (vaccineCodes[$_get](i).code == code) {
+            vaccineCodes[$_get](i).active = false;
+          }
+        }
+        yield this.setVaccineCodes(vaccineCodes);
+        return true;
+      }).bind(this));
+    }
+    enableVaccineCode(code) {
+      return async.async(T.boolL(), (function* enableVaccineCode() {
+        let vaccineCodes = (yield this.getVaccineCodes());
+        for (let i = 0; i < dart.notNull(vaccineCodes[$length]); i = i + 1) {
+          if (vaccineCodes[$_get](i).code == code) {
+            vaccineCodes[$_get](i).active = true;
+          }
+        }
+        yield this.setVaccineCodes(vaccineCodes);
+        return true;
+      }).bind(this));
+    }
+    getVaccineCodes() {
+      return async.async(T.ListLOfVaccineCodeModelL(), function* getVaccineCodes() {
+        let t5;
+        let vaccineCodes = T.JSArrayOfVaccineCodeModelL().of([]);
+        let result = (yield shared_preferences.SharedPreferences.getInstance()).getStringList("vaccineCodes");
+        if ((t5 = result, t5 == null ? null : t5[$isNotEmpty]) === true) {
+          result[$forEach](dart.fn(element => {
+            let js = convert.json.decode(element);
+            vaccineCodes[$add](new vaccine_code_model.VaccineCodeModel.new({code: T.StringL().as(dart.dsend(js, '_get', ["code"])), id: T.intL().as(dart.dsend(js, '_get', ["id"])), active: T.boolL().as(dart.dsend(js, '_get', ["active"]))}));
+          }, T.StringLToNull()));
+        }
+        return vaccineCodes;
+      });
+    }
+    setVaccineCodes(models) {
+      return async.async(T.boolL(), function* setVaccineCodes() {
+        let values = T.JSArrayOfStringL().of([]);
+        models[$forEach](dart.fn(element => {
+          values[$add](convert.json.encode(new (T.IdentityMapOfStringL$ObjectL()).from(["code", element.code, "id", element.id, "active", element.active])));
+        }, T.VaccineCodeModelLToNull()));
+        return (yield shared_preferences.SharedPreferences.getInstance()).setStringList("vaccineCodes", values);
+      });
+    }
+    searchPerson(query, siteId) {
+      return async.async(T.ListLOfVaccineModelL(), (function* searchPerson() {
+        try {
+          yield this[_openDatabase]();
+          let vaccineModelResult = T.JSArrayOfVaccineModelL().of([]);
+          let result = (yield this.database.query("vaccineTable", {columns: T.JSArrayOfStringL().of(["personId", "personDocument", "civil", "personName", "personLastName", "personAge", "personGender", "vaccineId", "healthArea", "vaccineSite", "inclusionNumber", "oneVaccineAdministrationDate", "twoVaccineAdministrationDate", "threeVaccineAdministrationDate", "mDate", "modified", "errors", "verify", "editable", "id"]), where: "(" + "personDocument" + " LIKE ? OR " + "inclusionNumber" + " LIKE ?) AND " + "vaccineSite" + " == ?", whereArgs: T.JSArrayOfObjectL().of(["%" + dart.str(query) + "%", "%" + dart.str(query) + "%", siteId])}));
+          if (dart.notNull(result[$length]) > 0) {
+            result[$forEach](dart.fn(element => {
+              vaccineModelResult[$add](this[_mapSQLiteResultToVaccineModel](T.MapLOfStringL$dynamic().as(element)));
+            }, T.MapLToNull()));
+          }
+          return vaccineModelResult;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    [_mapSQLiteResultToVaccineModel](json) {
+      let result = new vaccine_model.VaccineModel.new({id: T.StringL().as(json[$_get]("vaccineId")), healthAreaId: T.StringL().as(json[$_get]("healthArea")), inclusionNumber: T.StringL().as(json[$_get]("inclusionNumber")), vaccineSite: T.StringL().as(json[$_get]("vaccineSite")), errorDescription: T.StringL().as(json[$_get]("errors")), verify: dart.equals(json[$_get]("verify"), 1), oneVaccineAdministrationDate: json[$_get]("oneVaccineAdministrationDate") != null ? this[_dateFromString](T.StringL().as(json[$_get]("oneVaccineAdministrationDate"))) : null, twoVaccineAdministrationDate: json[$_get]("twoVaccineAdministrationDate") != null ? this[_dateFromString](T.StringL().as(json[$_get]("twoVaccineAdministrationDate"))) : null, threeVaccineAdministrationDate: json[$_get]("threeVaccineAdministrationDate") != null ? this[_dateFromString](T.StringL().as(json[$_get]("threeVaccineAdministrationDate"))) : null, modificationDate: json[$_get]("mDate") != null ? this[_dateFromString](T.StringL().as(json[$_get]("mDate"))) : null, modified: dart.equals(json[$_get]("modified"), 1), editable: dart.equals(json[$_get]("editable"), 1), localId: T.intL().as(json[$_get]("id"))});
+      let personMap = new (T.IdentityMapOfStringL$dynamic()).from(["personId", json[$_get]("personId"), "personName", json[$_get]("personName"), "personAge", json[$_get]("personAge"), "personGender", dart.equals(json[$_get]("personGender"), "M") ? person_model.Gender.M : person_model.Gender.F, "personDocument", json[$_get]("personDocument"), "civil", json[$_get]("civil"), "personLastName", json[$_get]("personLastName")]);
+      let person = this[_mapSQLiteResultToPersonModel](personMap);
+      result.person = person;
+      return result;
+    }
+    [_vaccineModelToStorageJson](model) {
+      let t6, t6$, t6$0, t6$1, t6$2, t6$3;
+      return new (T.IdentityMapOfStringL$dynamic()).from(["personId", model.person.id, "personDocument", model.person.identificationDocument, "civil", dart.test(model.person.isCivil) ? 1 : 0, "personName", model.person.name, "personLastName", model.person.lastName, "personAge", model.person.age, "personGender", model.person.gender == person_model.Gender.M ? "M" : "F", "vaccineId", model.id, "healthArea", model.healthAreaId, "vaccineSite", model.vaccineSite, "inclusionNumber", model.inclusionNumber, "oneVaccineAdministrationDate", (t6$ = (t6 = model.oneVaccineAdministrationDate, t6 == null ? null : t6.toUtc()), t6$ == null ? null : t6$.toIso8601String()), "twoVaccineAdministrationDate", (t6$1 = (t6$0 = model.twoVaccineAdministrationDate, t6$0 == null ? null : t6$0.toUtc()), t6$1 == null ? null : t6$1.toIso8601String()), "threeVaccineAdministrationDate", (t6$3 = (t6$2 = model.threeVaccineAdministrationDate, t6$2 == null ? null : t6$2.toUtc()), t6$3 == null ? null : t6$3.toIso8601String()), "mDate", new core.DateTime.now().toUtc().toIso8601String(), "modified", 1, "errors", model.errorDescription, "verify", dart.test(model.verify) ? 1 : 0, "editable", 1]);
+    }
+    [_vaccineModelToStorageJsonFromServer](model) {
+      let t6, t6$, t6$0, t6$1, t6$2, t6$3;
+      return new (T.IdentityMapOfStringL$dynamic()).from(["personId", model.person.id, "personDocument", model.person.identificationDocument, "civil", 1, "personName", model.person.name, "personLastName", model.person.lastName, "personAge", model.person.age, "personGender", model.person.gender == person_model.Gender.M ? "M" : "F", "vaccineId", model.id, "healthArea", model.healthAreaId, "vaccineSite", model.vaccineSite, "inclusionNumber", model.inclusionNumber, "oneVaccineAdministrationDate", (t6$ = (t6 = model.oneVaccineAdministrationDate, t6 == null ? null : t6.toUtc()), t6$ == null ? null : t6$.toIso8601String()), "twoVaccineAdministrationDate", (t6$1 = (t6$0 = model.twoVaccineAdministrationDate, t6$0 == null ? null : t6$0.toUtc()), t6$1 == null ? null : t6$1.toIso8601String()), "threeVaccineAdministrationDate", (t6$3 = (t6$2 = model.threeVaccineAdministrationDate, t6$2 == null ? null : t6$2.toUtc()), t6$3 == null ? null : t6$3.toIso8601String()), "mDate", null, "modified", 0, "errors", model.errorDescription, "verify", dart.test(model.verify) ? 1 : 0, "editable", 0]);
+    }
+    [_mapSQLiteResultToPersonModel](json) {
+      return new person_model.PersonModel.new({id: T.StringL().as(json[$_get]("personId")), name: T.StringL().as(json[$_get]("personName")), age: T.intL().as(json[$_get]("personAge")), gender: T.GenderL().as(json[$_get]("personGender")), identificationDocument: T.StringL().as(json[$_get]("personDocument")), isCivil: dart.equals(json[$_get]("civil"), 1), lastName: T.StringL().as(json[$_get]("personLastName"))});
+    }
+    [_dateFromString](dateStringInFormat) {
+      return core.DateTime.tryParse(dateStringInFormat).toLocal();
+    }
+    existModifyData() {
+      return async.async(T.ListLOfVaccineModelL(), (function* existModifyData() {
+        try {
+          yield this[_openDatabase]();
+          let vaccineModelResult = T.JSArrayOfVaccineModelL().of([]);
+          let result = (yield this.database.query("vaccineTable", {columns: T.JSArrayOfStringL().of(["personId", "personDocument", "civil", "personName", "personLastName", "personAge", "personGender", "vaccineId", "healthArea", "vaccineSite", "inclusionNumber", "oneVaccineAdministrationDate", "twoVaccineAdministrationDate", "threeVaccineAdministrationDate", "mDate", "modified", "errors", "verify", "editable", "id"]), where: "modified" + " = ?", whereArgs: T.JSArrayOfObjectL().of([1])}));
+          if (dart.notNull(result[$length]) > 0) {
+            result[$forEach](dart.fn(element => {
+              vaccineModelResult[$add](this[_mapSQLiteResultToVaccineModel](T.MapLOfStringL$dynamic().as(element)));
+            }, T.MapLToNull()));
+          }
+          return vaccineModelResult;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    getVaccinesWithErrors() {
+      return async.async(T.ListLOfVaccineModelL(), (function* getVaccinesWithErrors() {
+        try {
+          yield this[_openDatabase]();
+          let vaccineModelResult = T.JSArrayOfVaccineModelL().of([]);
+          let result = (yield this.database.query("vaccineTable", {columns: T.JSArrayOfStringL().of(["personId", "personDocument", "civil", "personName", "personLastName", "personAge", "personGender", "vaccineId", "healthArea", "vaccineSite", "inclusionNumber", "oneVaccineAdministrationDate", "twoVaccineAdministrationDate", "threeVaccineAdministrationDate", "mDate", "modified", "errors", "verify", "id"]), where: "errors" + " IS NOT NULL"}));
+          if (dart.notNull(result[$length]) > 0) {
+            result[$forEach](dart.fn(element => {
+              vaccineModelResult[$add](this[_mapSQLiteResultToVaccineModel](T.MapLOfStringL$dynamic().as(element)));
+            }, T.MapLToNull()));
+          }
+          return vaccineModelResult;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    getConfig() {
+      return async.async(T.ConfigModelL(), function* getConfig() {
+        let resultModel = null;
+        let result = (yield shared_preferences.SharedPreferences.getInstance()).getString("config");
+        if (result != null) {
+          let js = convert.json.decode(result);
+          resultModel = new config_model.ConfigModel.new({areaId: T.StringL().as(dart.dsend(js, '_get', ["configAreaId"])), areaName: T.StringL().as(dart.dsend(js, '_get', ["configAreaName"])), siteId: T.StringL().as(dart.dsend(js, '_get', ["configSiteId"])), siteName: T.StringL().as(dart.dsend(js, '_get', ["configSiteName"])), siteShortName: T.StringL().as(dart.dsend(js, '_get', ["shortName"]))});
+        }
+        return resultModel;
+      });
+    }
+    setConfig(model) {
+      return async.async(T.boolL(), function* setConfig() {
+        let value = null;
+        if (model != null) {
+          value = convert.json.encode(new (T.IdentityMapOfStringL$StringL()).from(["configAreaId", model.areaId, "configAreaName", model.areaName, "configSiteId", model.siteId, "configSiteName", model.siteName, "shortName", model.siteShortName]));
+        }
+        return (yield shared_preferences.SharedPreferences.getInstance()).setString("config", value);
+      });
+    }
+    cleanDataBase() {
+      return async.async(T.boolL(), (function* cleanDataBase() {
+        try {
+          yield this[_openDatabase]();
+          yield this.database.delete("vaccineTable", {where: "errors" + " IS NULL"});
+          return true;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          core.print(ex);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    updateRecordsAtTheEndOfSync(models) {
+      return async.async(T.boolL(), (function* updateRecordsAtTheEndOfSync() {
+        try {
+          this[_openDatabase]();
+          async.Future.forEach(T.VaccineModelL(), models, dart.fn(element => async.async(core.Null, (function*() {
+            yield this.database.update("vaccineTable", new (T.IdentityMapOfStringL$ObjectL()).from(["mDate", new core.DateTime.now().toIso8601String(), "modified", 0, "editable", 0]), {where: "inclusionNumber" + " = ?", whereArgs: T.JSArrayOfObjectL().of([dart.dload(element, 'inclusionNumber')])});
+          }).bind(this)), T.dynamicToFutureLOfNull()));
+          return true;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          core.print(ex);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    existModifyDataForBackgroundUpload() {
+      return async.async(T.ListLOfVaccineModelL(), (function* existModifyDataForBackgroundUpload() {
+        try {
+          yield this[_openDatabase]();
+          let vaccineModelResult = T.JSArrayOfVaccineModelL().of([]);
+          let result = (yield this.database.query("vaccineTable", {columns: T.JSArrayOfStringL().of(["personId", "personDocument", "civil", "personName", "personLastName", "personAge", "personGender", "vaccineId", "healthArea", "vaccineSite", "inclusionNumber", "oneVaccineAdministrationDate", "twoVaccineAdministrationDate", "threeVaccineAdministrationDate", "mDate", "modified", "errors", "verify", "id"]), where: "modified" + " = ? AND " + "verify" + " = ?", whereArgs: T.JSArrayOfObjectL().of([1, 1])}));
+          if (dart.notNull(result[$length]) > 0) {
+            result[$forEach](dart.fn(element => {
+              vaccineModelResult[$add](this[_mapSQLiteResultToVaccineModel](T.MapLOfStringL$dynamic().as(element)));
+            }, T.MapLToNull()));
+          }
+          return vaccineModelResult;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    createVaccineRecordFromServer(model) {
+      return async.async(T.boolL(), (function* createVaccineRecordFromServer() {
+        try {
+          yield this[_openDatabase]();
+          let result = (yield this.database.query("vaccineTable", {columns: T.JSArrayOfStringL().of(["inclusionNumber"]), where: "inclusionNumber" + " = ?", whereArgs: T.JSArrayOfObjectL().of([model.inclusionNumber])}));
+          if (result[$length] === 0) {
+            yield this.database.insert("vaccineTable", this[_vaccineModelToStorageJsonFromServer](model));
+            return true;
+          } else {
+            yield this.database.update("vaccineTable", this[_vaccineModelToStorageJsonFromServer](model), {where: "inclusionNumber" + " = ?", whereArgs: T.JSArrayOfObjectL().of([model.inclusionNumber])});
+            return true;
+          }
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          core.print(ex);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    updateRecordsWhitErrorsAtTheEndOfSync(models) {
+      return async.async(T.boolL(), (function* updateRecordsWhitErrorsAtTheEndOfSync() {
+        try {
+          this[_openDatabase]();
+          async.Future.forEach(T.VaccineModelL(), models, dart.fn(element => async.async(core.Null, (function*() {
+            yield this.database.update("vaccineTable", new (T.IdentityMapOfStringL$ObjectL()).from(["mDate", new core.DateTime.now().toIso8601String(), "modified", 0, "editable", 1, "errors", element.errorDescription]), {where: "inclusionNumber" + " = ?", whereArgs: T.JSArrayOfObjectL().of([element.inclusionNumber])});
+          }).bind(this)), T.VaccineModelLToFutureLOfNull()));
+          return true;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          core.print(ex);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    updateLocalRecord(model) {
+      return async.async(T.boolL(), (function* updateLocalRecord() {
+        try {
+          yield this[_openDatabase]();
+          yield this.database.update("vaccineTable", this[_vaccineModelToStorageJson](model), {where: "id" + " = ?", whereArgs: T.JSArrayOfObjectL().of([model.localId])});
+          return true;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          core.print(ex);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    [_mapSQLiteResultToUserModel](json) {
+      let result = new user_model.UserModel.new({token: T.StringL().as(json[$_get]("token")), password: T.StringL().as(json[$_get]("password")), user: T.StringL().as(json[$_get]("user"))});
+      return result;
+    }
+    getUsertoken(user, pass) {
+      return async.async(T.ListLOfUserModelL(), (function* getUsertoken() {
+        try {
+          yield this[_openDatabase]();
+          let userModelResult = T.JSArrayOfUserModelL().of([]);
+          let result = (yield this.database.query("user_table", {where: "user" + " =? AND " + "password" + " =?", whereArgs: T.JSArrayOfObjectL().of([user, pass])}));
+          if (dart.notNull(result[$length]) > 0) {
+            result[$forEach](dart.fn(element => {
+              userModelResult[$add](this[_mapSQLiteResultToUserModel](T.MapLOfStringL$dynamic().as(element)));
+            }, T.MapLToNull()));
+          }
+          return userModelResult;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    getUser(user, token) {
+      return async.async(T.ListLOfUserModelL(), (function* getUser() {
+        try {
+          yield this[_openDatabase]();
+          let userModelResult = T.JSArrayOfUserModelL().of([]);
+          let result = (yield this.database.query("user_table", {where: "token" + " =?", whereArgs: T.JSArrayOfObjectL().of([token])}));
+          if (dart.notNull(result[$length]) > 0) {
+            result[$forEach](dart.fn(element => {
+              userModelResult[$add](this[_mapSQLiteResultToUserModel](T.MapLOfStringL$dynamic().as(element)));
+            }, T.MapLToNull()));
+          }
+          return userModelResult;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    login(user, pass) {
+      return async.async(T.StringL(), (function* login() {
+        let res = (yield this.getUsertoken(user, pass));
+        if (dart.notNull(res[$length]) > 0) {
+          return res[$_get](0).token;
+        }
+        dart.throw(new exceptions.LocalException.fromString(304, ""));
+      }).bind(this));
+    }
+    getTicketClientPreferences() {
+      return async.async(T.TicketsClientModelL(), function* getTicketClientPreferences() {
+        try {
+          let resultModel = null;
+          let result = (yield shared_preferences.SharedPreferences.getInstance()).getString("tickets");
+          if (result != null) {
+            let js = convert.json.decode(result);
+            resultModel = new tickets_client_model.TicketsClientModel.new({id: T.intL().as(dart.dsend(js, '_get', ["id"])), dateschedule: core.DateTime.parse(core.String.as(dart.dsend(js, '_get', ["dateschedule"]))), addressclient: T.StringL().as(dart.dsend(js, '_get', ["addressclient"])), phone: T.intL().as(dart.dsend(js, '_get', ["phone"])), token: T.StringL().as(dart.dsend(js, '_get', ["token"])), nameclient: T.StringL().as(dart.dsend(js, '_get', ["nameclient"])), note: T.StringL().as(dart.dsend(js, '_get', ["note"])), idclient: T.intL().as(dart.dsend(js, '_get', ["idclient"]))});
+          }
+          return resultModel;
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          dart.throw(e);
+        }
+      });
+    }
+    getUsertickets(token) {
+      return async.async(T.ListLOfTicketsClientModelL(), (function* getUsertickets() {
+        try {
+          yield this[_openDatabase]();
+          let ticketsModelResult = T.JSArrayOfTicketsClientModelL().of([]);
+          let result = (yield this.database.query("client_table" + " INNER JOIN " + "tickets_table" + " ON " + "tickets_table" + "." + "idclient" + " = " + "client_table" + "." + "id" + " ", {where: "client_table" + "." + "token" + " =?", whereArgs: T.JSArrayOfObjectL().of([token])}));
+          if (dart.notNull(result[$length]) > 0) {
+            result[$forEach](dart.fn(element => {
+              ticketsModelResult[$add](this[_mapSQLiteResultToTicketsClientModel](T.MapLOfStringL$dynamic().as(element)));
+            }, T.MapLToNull()));
+          }
+          return ticketsModelResult;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    [_mapSQLiteResultToTicketsClientModel](json) {
+      let result = new tickets_client_model.TicketsClientModel.new({id: T.intL().as(json[$_get]("id")), dateschedule: core.DateTime.parse(core.String.as(json[$_get]("dateschedule"))), nameclient: T.StringL().as(json[$_get]("nameclient")), addressclient: T.StringL().as(json[$_get]("addressclient")), phone: T.intL().as(json[$_get]("phone")), note: T.StringL().as(json[$_get]("note")), idclient: T.intL().as(json[$_get]("idclient"))});
+      return result;
+    }
+    getTicketSelect(id) {
+      return async.async(T.TicketsModelL(), (function* getTicketSelect() {
+        try {
+          yield this[_openDatabase]();
+          let ticketsModelResult = T.JSArrayOfTicketsModelL().of([]);
+          let result = (yield this.database.query("tickets_table", {where: "tickets_table" + "." + "id" + " =?", whereArgs: T.JSArrayOfObjectL().of([id])}));
+          if (dart.notNull(result[$length]) > 0) {
+            result[$forEach](dart.fn(element => {
+              ticketsModelResult[$add](this[_mapSQLiteResultToTicketsModel](T.MapLOfStringL$dynamic().as(element)));
+            }, T.MapLToNull()));
+          }
+          return ticketsModelResult[$_get](0);
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    [_mapSQLiteResultToTicketsModel](json) {
+      let result = new tickets_model.TicketsModel.new({id: T.intL().as(json[$_get]("id")), dateschedule: T.DateTimeL().as(json[$_get]("dateschedule")), idclient: T.intL().as(json[$_get]("idclient"))});
+      return result;
+    }
+    getTicketClientSelect(id) {
+      return async.async(T.TicketsClientModelL(), (function* getTicketClientSelect() {
+        try {
+          yield this[_openDatabase]();
+          let ticketsModelResult = T.JSArrayOfTicketsClientModelL().of([]);
+          let result = (yield this.database.query("tickets_table" + " INNER JOIN " + "client_table" + " ON " + "client_table" + "." + "id" + "= " + "tickets_table" + "." + "idclient", {columns: T.JSArrayOfStringL().of(["tickets_table" + "." + "id", "tickets_table" + "." + "dateschedule", "tickets_table" + "." + "note", "client_table" + "." + "addressclient", "client_table" + "." + "phone", "client_table" + "." + "nameclient", "client_table" + "." + "token", "tickets_table" + "." + "idclient"]), where: "tickets_table" + "." + "id" + " =?", whereArgs: T.JSArrayOfObjectL().of([id])}));
+          if (dart.notNull(result[$length]) > 0) {
+            result[$forEach](dart.fn(element => {
+              ticketsModelResult[$add](this[_mapSQLiteResultToTicketClientModel](T.MapLOfStringL$dynamic().as(element)));
+            }, T.MapLToNull()));
+          }
+          return ticketsModelResult[$_get](0);
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    [_mapSQLiteResultToTicketClientModel](json) {
+      let result = new tickets_client_model.TicketsClientModel.new({id: T.intL().as(json[$_get]("id")), dateschedule: core.DateTime.parse(core.String.as(json[$_get]("dateschedule"))), addressclient: T.StringL().as(json[$_get]("addressclient")), phone: T.intL().as(json[$_get]("phone")), token: T.StringL().as(json[$_get]("token")), nameclient: T.StringL().as(json[$_get]("nameclient")), note: T.StringL().as(json[$_get]("note")), idclient: T.intL().as(json[$_get]("idclient"))});
+      return result;
+    }
+    getClientSelect(id) {
+      return async.async(T.ClientModelL(), (function* getClientSelect() {
+        try {
+          yield this[_openDatabase]();
+          let clientModelResult = T.JSArrayOfClientModelL().of([]);
+          let result = (yield this.database.query("client_table", {where: "client_table" + "." + "id" + " =?", whereArgs: T.JSArrayOfObjectL().of([id])}));
+          if (dart.notNull(result[$length]) > 0) {
+            result[$forEach](dart.fn(element => {
+              clientModelResult[$add](this[_mapSQLiteResultToClientModel](T.MapLOfStringL$dynamic().as(element)));
+            }, T.MapLToNull()));
+          }
+          return clientModelResult[$_get](0);
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    getClientList(token) {
+      return async.async(T.ListLOfClientModelL(), (function* getClientList() {
+        try {
+          yield this[_openDatabase]();
+          let clientModelResult = T.JSArrayOfClientModelL().of([]);
+          let result = (yield this.database.query("client_table", {where: "client_table" + "." + "token" + " =?", whereArgs: T.JSArrayOfObjectL().of([token])}));
+          if (dart.notNull(result[$length]) > 0) {
+            result[$forEach](dart.fn(element => {
+              clientModelResult[$add](this[_mapSQLiteResultToClientModel](T.MapLOfStringL$dynamic().as(element)));
+            }, T.MapLToNull()));
+          }
+          return clientModelResult;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    [_mapSQLiteResultToClientModel](json) {
+      let result = new client_model.ClientModel.new({id: T.intL().as(json[$_get]("id")), nameclient: T.StringL().as(json[$_get]("nameclient")), addressclient: T.StringL().as(json[$_get]("addressclient")), phone: T.intL().as(json[$_get]("phone"))});
+      return result;
+    }
+    getNoteSelect(id) {
+      return async.async(T.NoteModelL(), (function* getNoteSelect() {
+        try {
+          yield this[_openDatabase]();
+          let noteModelResult = T.JSArrayOfNoteModelL().of([]);
+          let result = (yield this.database.query("notes_table", {where: "notes_table" + "." + "id" + " =?", whereArgs: T.JSArrayOfObjectL().of([id])}));
+          if (dart.notNull(result[$length]) > 0) {
+            result[$forEach](dart.fn(element => {
+              noteModelResult[$add](this[_mapSQLiteResultToNoteModel](T.MapLOfStringL$dynamic().as(element)));
+            }, T.MapLToNull()));
+          }
+          return noteModelResult[$_get](0);
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    getNoteList(id) {
+      return async.async(T.ListLOfNoteModelL(), (function* getNoteList() {
+        try {
+          yield this[_openDatabase]();
+          let noteModelResult = T.JSArrayOfNoteModelL().of([]);
+          let result = (yield this.database.query("notes_table", {where: "notes_table" + "." + "idticket" + " =?", whereArgs: T.JSArrayOfObjectL().of([id])}));
+          if (dart.notNull(result[$length]) > 0) {
+            result[$forEach](dart.fn(element => {
+              noteModelResult[$add](this[_mapSQLiteResultToNoteModel](T.MapLOfStringL$dynamic().as(element)));
+            }, T.MapLToNull()));
+          }
+          return noteModelResult;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    [_mapSQLiteResultToNoteModel](json) {
+      let result = new note_model.NoteModel.new({id: T.intL().as(json[$_get]("id")), note: T.StringL().as(json[$_get]("note"))});
+      return result;
+    }
+    setTicketClientModelinPreferences(model) {
+      return async.async(T.boolL(), function* setTicketClientModelinPreferences() {
+        try {
+          let value = null;
+          if (model != null) {
+            value = convert.json.encode(new (T.IdentityMapOfStringL$ObjectL()).from(["id", model.id, "token", model.token, "note", model.note, "dateschedule", dart.toString(model.dateschedule), "phone", model.phone, "nameclient", model.nameclient, "addressclient", model.addressclient, "idclient", model.idclient]));
+          }
+          return (yield shared_preferences.SharedPreferences.getInstance()).setString("tickets", value);
+        } catch (e$) {
+          let e = dart.getThrown(e$);
+          dart.throw(e);
+        }
+      });
+    }
+    setTicketSelect(model) {
+      return async.async(T.intL(), (function* setTicketSelect() {
+        try {
+          yield this[_openDatabase]();
+          let values = new (T.IdentityMapOfStringL$ObjectL()).from(["dateschedule", dart.toString(model.dateschedule), "idclient", model.idclient, "note", ""]);
+          let id = (yield this.database.insert("tickets_table", values, {conflictAlgorithm: sql_builder.ConflictAlgorithm.replace}));
+          return id;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    setClientSelect(model) {
+      return async.async(T.boolL(), (function* setClientSelect() {
+        try {
+          yield this[_openDatabase]();
+          let values = new (T.IdentityMapOfStringL$ObjectL()).from(["id", model.id, "nameclient", model.nameclient, "addressclient", model.addressclient, "phone", model.phone, "token", model.token]);
+          yield this.database.insert("client_table", values, {conflictAlgorithm: sql_builder.ConflictAlgorithm.replace});
+          return true;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    setNoteSelect(model) {
+      return async.async(T.boolL(), (function* setNoteSelect() {
+        try {
+          yield this[_openDatabase]();
+          let values = new (T.IdentityMapOfStringL$ObjectL()).from(["id", model.id, "note", model.note, "idticket", model.idticket]);
+          yield this.database.insert("notes_table", values, {conflictAlgorithm: sql_builder.ConflictAlgorithm.replace});
+          return true;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    updateTicketSelect(model) {
+      return async.async(T.intL(), (function* updateTicketSelect() {
+        try {
+          yield this[_openDatabase]();
+          let values = new (T.IdentityMapOfStringL$StringL()).from(["dateschedule", dart.toString(model.dateschedule), "note", model.note]);
+          let result = (yield this.database.update("tickets_table", values, {where: "tickets_table" + "." + "id" + " =?", whereArgs: T.JSArrayOfObjectL().of([model.id])}));
+          return result;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    updateClientSelect(model) {
+      return async.async(T.intL(), (function* updateClientSelect() {
+        try {
+          yield this[_openDatabase]();
+          let values = new (T.IdentityMapOfStringL$ObjectL()).from(["nameclient", model.nameclient, "addressclient", model.addressclient, "phone", model.phone, "token", model.token]);
+          let result = (yield this.database.update("client_table", values, {where: "client_table" + "." + "id" + " =?", whereArgs: T.JSArrayOfObjectL().of([model.id])}));
+          return result;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    updateNoteSelect(model) {
+      return async.async(T.intL(), (function* updateNoteSelect() {
+        try {
+          yield this[_openDatabase]();
+          let values = new (T.IdentityMapOfStringL$ObjectL()).from(["note", model.note, "idticket", model.idticket]);
+          let result = (yield this.database.update("notes_table", values, {where: "notes_table" + "." + "id" + " =?", whereArgs: T.JSArrayOfObjectL().of([model.id])}));
+          return result;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    deleteTicketSelect(id) {
+      return async.async(T.intL(), (function* deleteTicketSelect() {
+        try {
+          yield this[_openDatabase]();
+          let result = (yield this.database.delete("tickets_table", {where: "tickets_table" + "." + "id" + " =?", whereArgs: T.JSArrayOfObjectL().of([id])}));
+          return result;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    deleteClientSelect(id) {
+      return async.async(T.intL(), (function* deleteClientSelect() {
+        try {
+          yield this[_openDatabase]();
+          let result = (yield this.database.delete("client_table", {where: "client_table" + "." + "id" + " =?", whereArgs: T.JSArrayOfObjectL().of([id])}));
+          return result;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+    deleteNoteSelect(id) {
+      return async.async(T.intL(), (function* deleteNoteSelect() {
+        try {
+          yield this[_openDatabase]();
+          let result = (yield this.database.delete("notes_table", {where: "notes_table" + "." + "id" + " =?", whereArgs: T.JSArrayOfObjectL().of([id])}));
+          return result;
+        } catch (e) {
+          let ex = dart.getThrown(e);
+          dart.throw(ex);
+        }
+      }).bind(this));
+    }
+  };
+  (dao_impl.DaoImpl.new = function() {
+    this[database] = null;
+    this[healthAreas] = T.JSArrayOfHealthAreaModelL().of([]);
+    this[sites] = T.JSArrayOfVaccineSiteModelL().of([]);
+    this[tickets] = T.JSArrayOfHealthAreaModelL().of([]);
+    ;
+  }).prototype = dao_impl.DaoImpl.prototype;
+  dart.addTypeTests(dao_impl.DaoImpl);
+  dart.addTypeCaches(dao_impl.DaoImpl);
+  dao_impl.DaoImpl[dart.implements] = () => [dao.Dao];
+  dart.setMethodSignature(dao_impl.DaoImpl, () => ({
+    __proto__: dart.getMethods(dao_impl.DaoImpl.__proto__),
+    [_openDatabase]: dart.fnType(dart.legacy(async.Future), []),
+    getSavedToken: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.String))), []),
+    createVaccineRecord: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.bool))), [dart.legacy(vaccine_model.VaccineModel)]),
+    getCatchmentGlobalData: dart.fnType(dart.legacy(async.Future$(dart.legacy(catchment_global_data.CatchmentGlobalData))), []),
+    getCurrentUserLogged: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.String))), []),
+    getCurrenttokenLogged: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.String))), []),
+    getHealthAreaModels: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.List$(dart.legacy(health_area_model.HealthAreaModel))))), []),
+    getVaccineRecords: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.List$(dart.legacy(vaccine_model.VaccineModel))))), []),
+    getVaccineSites: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.List$(dart.legacy(vaccine_site_model.VaccineSiteModel))))), []),
+    saveLogin: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.bool))), [dart.legacy(core.String), dart.legacy(core.String)]),
+    setCatchmentGlobalData: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.bool))), [dart.legacy(catchment_global_data.CatchmentGlobalData)]),
+    setHealthAreas: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.bool))), [dart.legacy(core.List$(dart.legacy(health_area_model.HealthAreaModel)))]),
+    setVaccineSites: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.bool))), [dart.legacy(core.List$(dart.legacy(vaccine_site_model.VaccineSiteModel)))]),
+    disableVaccineCode: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.bool))), [dart.legacy(core.String)]),
+    enableVaccineCode: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.bool))), [dart.legacy(core.String)]),
+    getVaccineCodes: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.List$(dart.legacy(vaccine_code_model.VaccineCodeModel))))), []),
+    setVaccineCodes: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.bool))), [dart.legacy(core.List$(dart.legacy(vaccine_code_model.VaccineCodeModel)))]),
+    searchPerson: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.List$(dart.legacy(vaccine_model.VaccineModel))))), [dart.legacy(core.String), dart.legacy(core.String)]),
+    [_mapSQLiteResultToVaccineModel]: dart.fnType(dart.legacy(vaccine_model.VaccineModel), [dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic))]),
+    [_vaccineModelToStorageJson]: dart.fnType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)), [dart.legacy(vaccine_model.VaccineModel)]),
+    [_vaccineModelToStorageJsonFromServer]: dart.fnType(dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic)), [dart.legacy(vaccine_model.VaccineModel)]),
+    [_mapSQLiteResultToPersonModel]: dart.fnType(dart.legacy(person_model.PersonModel), [dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic))]),
+    [_dateFromString]: dart.fnType(dart.legacy(core.DateTime), [dart.legacy(core.String)]),
+    existModifyData: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.List$(dart.legacy(vaccine_model.VaccineModel))))), []),
+    getVaccinesWithErrors: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.List$(dart.legacy(vaccine_model.VaccineModel))))), []),
+    getConfig: dart.fnType(dart.legacy(async.Future$(dart.legacy(config_model.ConfigModel))), []),
+    setConfig: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.bool))), [dart.legacy(config_model.ConfigModel)]),
+    cleanDataBase: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.bool))), []),
+    updateRecordsAtTheEndOfSync: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.bool))), [dart.legacy(core.List$(dart.legacy(vaccine_model.VaccineModel)))]),
+    existModifyDataForBackgroundUpload: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.List$(dart.legacy(vaccine_model.VaccineModel))))), []),
+    createVaccineRecordFromServer: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.bool))), [dart.legacy(vaccine_model.VaccineModel)]),
+    updateRecordsWhitErrorsAtTheEndOfSync: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.bool))), [dart.legacy(core.List$(dart.legacy(vaccine_model.VaccineModel)))]),
+    updateLocalRecord: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.bool))), [dart.legacy(vaccine_model.VaccineModel)]),
+    [_mapSQLiteResultToUserModel]: dart.fnType(dart.legacy(user_model.UserModel), [dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic))]),
+    getUsertoken: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.List$(dart.legacy(user_model.UserModel))))), [dart.legacy(core.String), dart.legacy(core.String)]),
+    getUser: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.List$(dart.legacy(user_model.UserModel))))), [dart.legacy(core.String), dart.legacy(core.String)]),
+    login: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.String))), [dart.legacy(core.String), dart.legacy(core.String)]),
+    getTicketClientPreferences: dart.fnType(dart.legacy(async.Future$(dart.legacy(tickets_client_model.TicketsClientModel))), []),
+    getUsertickets: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.List$(dart.legacy(tickets_client_model.TicketsClientModel))))), [dart.legacy(core.String)]),
+    [_mapSQLiteResultToTicketsClientModel]: dart.fnType(dart.legacy(tickets_client_model.TicketsClientModel), [dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic))]),
+    getTicketSelect: dart.fnType(dart.legacy(async.Future$(dart.legacy(tickets_model.TicketsModel))), [dart.legacy(core.int)]),
+    [_mapSQLiteResultToTicketsModel]: dart.fnType(dart.legacy(tickets_model.TicketsModel), [dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic))]),
+    getTicketClientSelect: dart.fnType(dart.legacy(async.Future$(dart.legacy(tickets_client_model.TicketsClientModel))), [dart.legacy(core.int)]),
+    [_mapSQLiteResultToTicketClientModel]: dart.fnType(dart.legacy(tickets_client_model.TicketsClientModel), [dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic))]),
+    getClientSelect: dart.fnType(dart.legacy(async.Future$(dart.legacy(client_model.ClientModel))), [dart.legacy(core.int)]),
+    getClientList: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.List$(dart.legacy(client_model.ClientModel))))), [dart.legacy(core.String)]),
+    [_mapSQLiteResultToClientModel]: dart.fnType(dart.legacy(client_model.ClientModel), [dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic))]),
+    getNoteSelect: dart.fnType(dart.legacy(async.Future$(dart.legacy(note_model.NoteModel))), [dart.legacy(core.int)]),
+    getNoteList: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.List$(dart.legacy(note_model.NoteModel))))), [dart.legacy(core.int)]),
+    [_mapSQLiteResultToNoteModel]: dart.fnType(dart.legacy(note_model.NoteModel), [dart.legacy(core.Map$(dart.legacy(core.String), dart.dynamic))]),
+    setTicketClientModelinPreferences: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.bool))), [dart.legacy(tickets_client_model.TicketsClientModel)]),
+    setTicketSelect: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.int))), [dart.legacy(tickets_model.TicketsModel)]),
+    setClientSelect: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.bool))), [dart.legacy(client_model.ClientModel)]),
+    setNoteSelect: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.bool))), [dart.legacy(note_model.NoteModel)]),
+    updateTicketSelect: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.int))), [dart.legacy(tickets_model.TicketsModel)]),
+    updateClientSelect: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.int))), [dart.legacy(client_model.ClientModel)]),
+    updateNoteSelect: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.int))), [dart.legacy(note_model.NoteModel)]),
+    deleteTicketSelect: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.int))), [dart.legacy(core.int)]),
+    deleteClientSelect: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.int))), [dart.legacy(core.int)]),
+    deleteNoteSelect: dart.fnType(dart.legacy(async.Future$(dart.legacy(core.int))), [dart.legacy(core.int)])
+  }));
+  dart.setLibraryUri(dao_impl.DaoImpl, I[0]);
+  dart.setFieldSignature(dao_impl.DaoImpl, () => ({
+    __proto__: dart.getFields(dao_impl.DaoImpl.__proto__),
+    database: dart.fieldType(dart.legacy(sqlite_api.Database)),
+    healthAreas: dart.fieldType(dart.legacy(core.List$(dart.legacy(health_area_model.HealthAreaModel)))),
+    sites: dart.fieldType(dart.legacy(core.List$(dart.legacy(vaccine_site_model.VaccineSiteModel)))),
+    tickets: dart.fieldType(dart.legacy(core.List$(dart.legacy(health_area_model.HealthAreaModel))))
+  }));
+  dart.trackLibraries("packages/test_flutter_python/data/dao/dao_impl.dart", {
+    "package:test_flutter_python/data/dao/dao_impl.dart": dao_impl
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["dao_impl.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/test_flutter_python/data/dao/dao_impl.dart.lib.js"}');
+  // Exports:
+  return {
+    data__dao__dao_impl: dao_impl
+  };
+}));
+
+//# sourceMappingURL=dao_impl.dart.lib.js.map

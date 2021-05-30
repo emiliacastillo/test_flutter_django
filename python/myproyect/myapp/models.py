@@ -1,0 +1,13 @@
+from django.db import models
+
+# Create your models here.
+
+class Task(models.Model):
+    # define la tarea
+    title = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name_plural = "Tasks"
+
+    def __str__(self):
+        return self.title

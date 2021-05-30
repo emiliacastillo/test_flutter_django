@@ -1,0 +1,93 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.test_flutter_python"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="16"
+8-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:3:5-66
+11-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:3:22-64
+12
+13    <application
+13-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:4:4-44:19
+14        android:name="io.flutter.app.FlutterApplication"
+14-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:5:9-57
+15        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+15-->[androidx.core:core:1.1.0] C:\Users\Emily\.gradle\caches\transforms-2\files-2.1\2e94107f30f39be366a17347c2bf100b\core-1.1.0\AndroidManifest.xml:24:18-86
+16        android:icon="@mipmap/ic_launcher"
+16-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:7:9-43
+17        android:label="test_flutter_python"
+17-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:6:9-44
+18        android:usesCleartextTraffic="true" >
+18-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:8:9-44
+19        <activity
+19-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:10:9-38:20
+20            android:name="com.example.test_flutter_python.MainActivity"
+20-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:11:13-41
+21            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+21-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:14:13-163
+22            android:hardwareAccelerated="true"
+22-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:15:13-47
+23            android:launchMode="singleTop"
+23-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:12:13-43
+24            android:theme="@style/LaunchTheme"
+24-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:13:13-47
+25            android:windowSoftInputMode="adjustResize" >
+25-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:16:13-55
+26
+27            <!--
+28                 Specifies an Android theme to apply to this Activity as soon as
+29                 the Android process has started. This theme is visible to the user
+30                 while the Flutter UI initializes. After that, this theme continues
+31                 to determine the Window background behind the Flutter UI.
+32            -->
+33            <meta-data
+33-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:21:13-24:17
+34                android:name="io.flutter.embedding.android.NormalTheme"
+34-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:22:15-70
+35                android:resource="@style/NormalTheme" />
+35-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:23:15-52
+36            <!--
+37                 Displays an Android View that continues showing the launch screen
+38                 Drawable until Flutter paints its first frame, then this splash
+39                 screen fades out. A splash screen is useful to avoid any visual
+40                 gap between the end of Android's launch screen and the painting of
+41                 Flutter's first frame.
+42            -->
+43            <meta-data
+43-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:30:13-33:17
+44                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+44-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:31:15-79
+45                android:resource="@drawable/launch_background" />
+45-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:32:15-61
+46
+47            <intent-filter>
+47-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:34:13-37:29
+48                <action android:name="android.intent.action.MAIN" />
+48-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:35:17-68
+48-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:35:25-66
+49
+50                <category android:name="android.intent.category.LAUNCHER" />
+50-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:36:17-76
+50-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:36:27-74
+51            </intent-filter>
+52        </activity>
+53        <!--
+54             Don't delete the meta-data below.
+55             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+56        -->
+57        <meta-data
+57-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:41:9-43:33
+58            android:name="flutterEmbedding"
+58-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:42:13-44
+59            android:value="2" />
+59-->E:\Trabajo\PROYECTOS\Flutter\test_flutter_python\android\app\src\main\AndroidManifest.xml:43:13-30
+60    </application>
+61
+62</manifest>
